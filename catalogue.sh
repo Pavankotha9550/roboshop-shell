@@ -9,10 +9,11 @@ W="\e[0m"
 
 echo -e "script started executed at $y$(date)$W"
 
-log_folder="var/log/shell-scripting-logs"
+log_folder="var/log/roboshop-shell"
+mkdir -p $log_folder
 script_name=$(echo $0 | cut -d "." -f1)
 log_file=$log_folder/$script_name.log
-mkdir -p $log_folder
+
 
 echo "userid:$userid"
 if [ $userid -ne 0 ] 
