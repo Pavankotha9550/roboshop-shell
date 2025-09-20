@@ -9,7 +9,7 @@ W="\e[0m"
 
 echo -e "script started executed at $y$(date)$W"
 
-log_folder="/var/log/roboshop-shell"
+log_folder="var/log/roboshop-shell"
 mkdir -p $log_folder
 script_name=$(echo $0 | cut -d "." -f1)
 log_file=$log_folder/$script_name.log
@@ -46,20 +46,20 @@ VALIDATE $? "enabling nodejs 20"
 dnf install nodejs -y &>>$log_file
 VALIDATE $? "installing nodejs"
 
-#useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
-#VALIDATE $? "adding roboshop user"
+useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
+VALIDATE $? "adding roboshop user"
 
-#mkdir /app 
-#VALIDATE $? "making app directory"
+mkdir /app 
+VALIDATE $? "making app directory"
 
-#curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
-#VALIDATE $? "downlading zip is success"
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
+VALIDATE $? "downlading zip is success"
 
 cd /app 
 VALIDATE $? "moving to app directory"
 
-#zip /tmp/catalogue.zip
-#VALIDATE $? "unziping catalogue zip in app"
+zip /tmp/catalogue.zip
+VALIDATE $? "unziping catalogue zip in app"
 
 npm install &>>$log_file
 VALIDATE $? "installing npm dependendies"
