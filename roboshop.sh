@@ -19,7 +19,7 @@ do
     echo "instance name : $instances and ip was: $ip"
 
     aws route53 change-resource-record-sets \
-  --hosted-zone-id ZONE_ID \
+  --hosted-zone-id $zone_id \
   --change-batch '
   {
   "Comment": "Update A record for iinstances created",
