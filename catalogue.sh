@@ -44,8 +44,8 @@ VALIDATE $? "enabling nodejs 20"
 dnf install nodejs -y &>>$log_file
 VALIDATE $? "installing nodejs"
 
-useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
-VALIDATE $? "adding roboshop user"
+#useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
+#VALIDATE $? "adding roboshop user"
 
 mkdir /app 
 VALIDATE $? "making app directory"
@@ -62,8 +62,9 @@ VALIDATE $? "unziping catalogue zip in app"
 npm install &>>$log_file
 VALIDATE $? "installing npm dependendies"
 
-sed -i 's/<MONGODB-SERVER-IPADDRESS>/mongodb.daws84.cyou/' catlog.services
-cp catlog.services /etc/systemd/system/catalogue.service
+cd /home/ec2-user/roboshop-shell
+sed -i 's/<MONGODB-SERVER-IPADDRESS>/mongodb.daws84.cyou/' catalogue.services
+cp catalogue.services /etc/systemd/system/catalogue.service
 VALIDATE $? "copying catalogue. services is done"
 
 systemctl daemon-reload
