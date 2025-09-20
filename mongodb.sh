@@ -47,7 +47,7 @@ VALIDATE $? "enabiling mongodb"
 systemctl start mongod 
 VALIDATE $? "starting mongodb"
 
-sed -i 'S/127.0.0.1/0.0.0.0' /etc/mongod.conf
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
 VALIDATE $? "editing mongodb configuration"
 
 systemctl restart mongod 
