@@ -49,8 +49,8 @@ VALIDATE $? "installing nodejs"
 #useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
 #VALIDATE $? "adding roboshop user"
 
-mkdir /app 
-VALIDATE $? "making app directory"
+#mkdir /app 
+#VALIDATE $? "making app directory"
 
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
 VALIDATE $? "downlading zip is success"
