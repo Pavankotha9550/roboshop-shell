@@ -46,23 +46,23 @@ VALIDATE $? "enabling nodejs 20"
 dnf install nodejs -y &>>$log_file
 VALIDATE $? "installing nodejs"
 
-useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
+#useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
 VALIDATE $? "adding roboshop user"
 
-mkdir /app 
+#mkdir /app 
 VALIDATE $? "making app directory"
 
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
+#curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
 VALIDATE $? "downlading zip is success"
 
 cd /app 
 VALIDATE $? "moving to app directory"
 
-unzip /tmp/catalogue.zip
+#unzip /tmp/catalogue.zip
 VALIDATE $? "unziping catalogue zip in app"
 
 
-npm install &>>$log_file
+#npm install &>>$log_file
 VALIDATE $? "installing npm dependendies"
 
 cp $script_dir/catalogue.services /etc/systemd/system/catalogue.service
