@@ -58,7 +58,7 @@ VALIDATE $? "downlading zip is success"
 cd /app 
 VALIDATE $? "moving to app directory"
 
-zip /tmp/catalogue.zip
+unzip /tmp/catalogue.zip
 VALIDATE $? "unziping catalogue zip in app"
 
 npm install &>>$log_file
