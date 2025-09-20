@@ -58,8 +58,8 @@ VALIDATE $? "installing nodejs"
 cd /app 
 VALIDATE $? "moving to app directory"
 
-zip /tmp/catalogue.zip
-VALIDATE $? "unziping catalogue zip in app"
+#zip /tmp/catalogue.zip
+#VALIDATE $? "unziping catalogue zip in app"
 
 npm install &>>$log_file
 VALIDATE $? "installing npm dependendies"
