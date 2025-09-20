@@ -78,6 +78,7 @@ VALIDATE $? "enabiling catalogue"
 systemctl start catalogue &>>$log_file
 VALIDATE $? "start catalogue"
 
+cd /app
 dnf install mongodb-mongosh -y &>>$log_file
 VALIDATE $? "installing mongodb client"
 
