@@ -38,10 +38,10 @@ VALIDATE()
 dnf module disable nodejs -y &>>$log_file
 VALIDATE $? "disabling nodejs"
 
-dnf module enable nodejs:20 -y
+dnf module enable nodejs:20 -y &>>$log_file
 VALIDATE $? "enabling nodejs 20"
 
-dnf install nodejs -y
+dnf install nodejs -y &>>$log_file
 VALIDATE $? "installing nodejs"
 
 useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
@@ -59,7 +59,7 @@ VALIDATE $? "moving to app directory"
 unzip /tmp/catalogue.zip
 VALIDATE $? "unziping catalogue zip in app"
 
-npm install 
+npm install &>>$log_file
 VALIDATE $? "installing npm dependendies"
 
 sed -i 's/<MONGODB-SERVER-IPADDRESS>/mongodb.daws84.cyou/' catlog.services
@@ -75,7 +75,7 @@ VALIDATE $? "enabiling catalogue"
 systemctl start catalogue
 VALIDATE $? "start catalogue"
 
-dnf install mongodb-mongosh -y
+dnf install mongodb-mongosh -y &>>$log_file
 VALIDATE $? "installing mongodb client"
 
 mongosh --host MONGODB-SERVER-IPADDRESS </app/db/master-data.js
