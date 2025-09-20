@@ -58,7 +58,7 @@ VALIDATE $? "installing nodejs"
 cd /app 
 VALIDATE $? "moving to app directory"
 
-#nzip /tmp/catalogue.zip
+zip /tmp/catalogue.zip
 VALIDATE $? "unziping catalogue zip in app"
 
 npm install &>>$log_file
