@@ -9,7 +9,7 @@ W="\e[0m"
 
 echo -e "script started executed at $y$(date)$W"
 
-log_folder="/var/log/roboshop-shell"
+log_folder="var/log/roboshop-shell"
 mkdir -p $log_folder
 script_name=$(echo $0 | cut -d "." -f1)
 log_file=$log_folder/$script_name.log
@@ -58,8 +58,8 @@ VALIDATE $? "installing nodejs"
 cd /app 
 VALIDATE $? "moving to app directory"
 
-#unzip /tmp/catalogue.zip
-#VALIDATE $? "unziping catalogue zip in app"
+#nzip /tmp/catalogue.zip
+VALIDATE $? "unziping catalogue zip in app"
 
 npm install &>>$log_file
 VALIDATE $? "installing npm dependendies"
@@ -75,7 +75,7 @@ VALIDATE $? "reloading of services"
 systemctl enable catalogue 
 VALIDATE $? "enabiling catalogue"
 
-systemctl start catalogue
+systemctl start catalogue &>>$log_file
 VALIDATE $? "start catalogue"
 
 dnf install mongodb-mongosh -y &>>$log_file
