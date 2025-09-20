@@ -37,6 +37,7 @@ do
         ]
         }
         '
+        exit 0
         
     fi
     echo "instance name : $instances and ip was: $ip"
