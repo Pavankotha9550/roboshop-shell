@@ -66,7 +66,7 @@ VALIDATE $? "unziping catalogue zip in app"
 VALIDATE $? "installing npm dependendies"
 
 cp $script_dir/catalogue.services /etc/systemd/system/catalogue.service
-sed -i 's/<MONGODB-SERVER-IPADDRESS>/mongodb.daws84.cyou/' catalogue.services
+sed -i 's/<MONGODB-SERVER-IPADDRESS>/mongodb.daws84.cyou/' /etc/systemd/system/catalogue.service
 VALIDATE $? "copying catalogue. services is done"
 
 systemctl daemon-reload
