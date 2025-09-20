@@ -9,12 +9,12 @@ W="\e[0m"
 
 echo -e "script started executed at $y$(date)$W"
 
-log_folder="var/log/roboshop-shell"
+log_folder="/var/log/roboshop-shell"
 mkdir -p $log_folder
 script_name=$(echo $0 | cut -d "." -f1)
 log_file=$log_folder/$script_name.log
 touch $log_file
-
+script_dir=$PWD
 
 echo "userid:$userid"
 if [ $userid -ne 0 ] 
@@ -46,11 +46,11 @@ VALIDATE $? "enabling nodejs 20"
 dnf install nodejs -y &>>$log_file
 VALIDATE $? "installing nodejs"
 
-#useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
-#VALIDATE $? "adding roboshop user"
+useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
+VALIDATE $? "adding roboshop user"
 
-#mkdir /app 
-#VALIDATE $? "making app directory"
+mkdir /app 
+VALIDATE $? "making app directory"
 
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
 VALIDATE $? "downlading zip is success"
@@ -61,13 +61,13 @@ VALIDATE $? "moving to app directory"
 unzip /tmp/catalogue.zip
 VALIDATE $? "unziping catalogue zip in app"
 
-cd /app
+
 npm install &>>$log_file
 VALIDATE $? "installing npm dependendies"
 
-cd /home/ec2-user/roboshop-shell
+cp $script_dir/catalogue.service
 sed -i 's/<MONGODB-SERVER-IPADDRESS>/mongodb.daws84.cyou/' catalogue.services
-cp catalogue.services /etc/systemd/system/catalogue.service
+cp $script_dir/catalogue.service /etc/systemd/system/catalogue.service
 VALIDATE $? "copying catalogue. services is done"
 
 systemctl daemon-reload
@@ -79,10 +79,10 @@ VALIDATE $? "enabiling catalogue"
 systemctl start catalogue &>>$log_file
 VALIDATE $? "start catalogue"
 
-cd /home/ec2-user/roboshop-shell
+cp $script_dir/mongo.repo /etc/yum.repos.d/mongo.repo
 dnf install mongodb-mongosh -y 
 VALIDATE $? "installing mongodb client"
 
-mongosh --host MONGODB-SERVER-IPADDRESS </app/db/master-data.js
+mongosh --host mongodb.daws84.cyou </app/db/master-data.js
 VALIDATE $? "loading masterdata to db"
 
