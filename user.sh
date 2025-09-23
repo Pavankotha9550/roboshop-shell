@@ -53,7 +53,7 @@ if [ $? -ne 0 ]
     echo -e "$y user already exist $w"
 fi
 
-mkdir /app 
+mkdir -p /app 
 VALIDATE $? "creating app directory"
 
 curl -L -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip
