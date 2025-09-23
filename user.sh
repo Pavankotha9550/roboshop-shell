@@ -9,10 +9,12 @@ W="\e[0m"
 
 echo -e "script started executed at $y$(date)$W"
 
-log_folder="var/log/shell-scripting-logs"
+log_folder="/var/log/roboshop-shell"
+mkdir -p $log_folder
 script_name=$(echo $0 | cut -d "." -f1)
 log_file=$log_folder/$script_name.log
-mkdir -p $log_folder
+touch $log_file
+script_dir=$PWD
 
 echo "userid:$userid"
 if [ $userid -ne 0 ] 
@@ -61,7 +63,7 @@ VALIDATE $? "unzipping user files"
 npm install 
 VALIDATE $? "installing npm dependendies"
 
-cp $PWD/user.service /etc/systemd/system/user.service
+cp $script_dir/user.service /etc/systemd/system/user.service
 sed -i 's/<REDIS-IP-ADDRESS>/redis.daws84.cyou/'  /etc/systemd/system/user.service
 VALIDATE $? "changing ip of redis"
 sed -i 's/<MONGODB-SERVER-IP-ADDRESS>/mongodb.daws84.cyou/' /etc/systemd/system/user.service
