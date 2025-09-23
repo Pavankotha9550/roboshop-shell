@@ -37,14 +37,14 @@ VALIDATE()
     fi
 }
 
-dnf module disable nodejs -y
-dnf module enable nodejs:20 -y
-VALIDATE $? "disabiling and enabiling nodejs"
+dnf module disable nodejs -y &>>$log_file
+dnf module enable nodejs:20 -y &>>$log_file
+VALIDATE $? "disabiling and enabiling nodejs" 
 
-dnf install nodejs -y
+dnf install nodejs -y &>>$log_file
 VALIDATE $? "installing nodejs"
 
-id roboshop
+id roboshop &>>$log_file
 if [ $? -ne 0 ]
     then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
@@ -66,7 +66,7 @@ VALIDATE $? "moving to app directory"
 unzip /tmp/user.zip
 VALIDATE $? "unzipping user files"
 
-npm install 
+npm install &>>$log_file
 VALIDATE $? "installing npm dependendies"
 
 cp $script_dir/user.service /etc/systemd/system/user.service
