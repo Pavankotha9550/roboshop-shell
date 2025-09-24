@@ -37,11 +37,11 @@ VALIDATE()
     fi
 }
 
-dnf module disable nodejs -y
-dnf module enable nodejs:20 -y
+dnf module disable nodejs -y &>>$log_file
+dnf module enable nodejs:20 -y &>>$log_file
 VALIDATE $? "disabiling and enabiling nodejs "
 
-dnf install nodejs -y
+dnf install nodejs -y &>>$log_file
 VALIDATE $? "installing nodejs"
 
 id roboshop
@@ -67,7 +67,7 @@ unzip /tmp/cart.zip
 VALIDATE $? "unxipping in tmp directory"
 
 cd /app 
-npm install 
+npm install &>>$log_file
 VALIDATE $? "installing npm"
 
 cp $script_dir/cart.service /etc/systemd/system/cart.service
