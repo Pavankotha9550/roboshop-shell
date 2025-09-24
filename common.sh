@@ -41,7 +41,7 @@ VALIDATE()
 ENDTIME()
 {
     end_time=$(date +%s)
-    total_time=$(($start_time)-($end_time))
+    total_time=$(($start_time - $end_time))
     echo -e "$y total time taken is: $total_time $y"
 
 }
