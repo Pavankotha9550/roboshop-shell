@@ -27,3 +27,5 @@ VALIDATE $? "copying the content of nginx.conf"
 
 systemctl restart nginx 
 VALIDATE $? "restarting nginx"
+
+ENDTIME

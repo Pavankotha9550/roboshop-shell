@@ -7,7 +7,7 @@ G="\e[32m"
 y="\e[33m"
 W="\e[0m"
 
-start_time=$(date + %s)
+start_time=$(date +%s)
 echo -e "script started executed at $y$(date)$W"
 
 log_folder="/var/log/roboshop-shell"
@@ -40,7 +40,7 @@ VALIDATE()
 
 ENDTIME()
 {
-    end_time=$(date + %s)
+    end_time=$(date +%s)
     echo -e "$y total time taken is:(($start_time)-($end_time)$y)"
 
 }
