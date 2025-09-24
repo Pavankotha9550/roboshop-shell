@@ -7,7 +7,7 @@ G="\e[32m"
 y="\e[33m"
 W="\e[0m"
 
-start-time= (date)
+start-time=$(date)
 echo -e "script started executed at $y$(date)$W"
 
 log_folder="/var/log/roboshop-shell"
