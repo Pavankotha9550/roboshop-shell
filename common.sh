@@ -45,3 +45,15 @@ ENDTIME()
     echo -e "$y total time taken is: $total_time $y"
 
 }
+
+check_user()
+{
+    id roboshop
+    if [ $? -ne 0 ]
+        then
+        useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
+        VALIDATE $? "adding user roboshop"
+        else
+        echo -e "$y user already there $w"
+    fi
+}
