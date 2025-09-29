@@ -7,14 +7,7 @@ VALIDATE $? "disabiling and enabiling nodejs "
 dnf install nodejs -y &>>$log_file
 VALIDATE $? "installing nodejs"
 
-id roboshop
-if [ $? -ne 0 ]
-    then
-    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
-    VALIDATE $? "adding user roboshop"
-    else
-    echo -e "$y user already there $w"
-fi
+check_user 
 
 
 mkdir -p /app
