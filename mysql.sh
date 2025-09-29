@@ -1,6 +1,6 @@
-./ common.sh
+source ./common.sh
 
-dnf install mysql-server -y
+dnf install mysql-server -y &>>$log_file
 VALIDATE $? "installing mysql server is success"
 
 systemctl enable mysqld
