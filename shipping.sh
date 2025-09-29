@@ -25,7 +25,7 @@ VALIDATE $? "installing npm dependendies"
 mv target/shipping-1.0.jar shipping.jar 
 VALIDATE $? "moving the file is $G success $W"
 
-cp $script_dir/shipping.services /etc/systemd/system/shipping.service
+cp $script_dir/shipping.service /etc/systemd/system/shipping.service
 sed -i 's/<CART-SERVER-IPADDRESS>/cart.daws84.cyou/' /etc/systemd/system/shipping.service
 sed -i 's/<MYSQL-SERVER-IPADDRESS>/mysql.daws84.cyou/' /etc/systemd/system/shipping.service
 VALIDATE $? "copying shipping. services is done"
