@@ -43,10 +43,10 @@ VALIDATE $? "installing mysql client"
 mysql -h mysql.daws84.cyou -uroot -pRoboShop@1 < /app/db/schema.sql
 VALIDATE $? "loading the schema is $Y success $W"
 
-mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/app-user.sql 
+mysql -h mysql.daws84.cyou -uroot -pRoboShop@1 < /app/db/app-user.sql 
 VALIDATE $? "creating the app user is $Y success $W"
 
-mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/master-data.sql
+mysql -h mysql.daws84.cyou -uroot -pRoboShop@1 < /app/db/master-data.sql
 VALIDATE $? "loading the master date is auccess"
 
 systemctl restart shipping
