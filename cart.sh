@@ -7,7 +7,7 @@ VALIDATE $? "disabiling and enabiling nodejs "
 dnf install nodejs -y &>>$log_file
 VALIDATE $? "installing nodejs"
 
-check_user 
+check_user &>>$log_file
 
 
 mkdir -p /app
