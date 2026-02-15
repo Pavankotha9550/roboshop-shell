@@ -8,7 +8,7 @@ domain_name="daws84.cyou"
 
 for instances in $@
 do
-    instance_id=$(aws ec2 run-instances --image-id ami-09c813fb71547fc4f --instance-type t2.micro --security-group-ids sg-0ccfe8392d60403ed --tag-specifications "ResourceType=instance,Tags=[{Key=Name, Value=$instances}]" --query "Instances[0].InstanceId" --output text)
+    instance_id=$(aws ec2 run-instances --image-id ami-0220d79f3f480ecf5 --instance-type t2.micro --security-group-ids sg-0ccfe8392d60403ed --tag-specifications "ResourceType=instance,Tags=[{Key=Name, Value=$instances}]" --query "Instances[0].InstanceId" --output text)
     
     if [ $instances != "frontend" ]
         then
