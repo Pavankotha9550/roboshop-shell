@@ -1,6 +1,6 @@
 #!/bin/bash
 
-AMI_ID="ami-09c813fb71547fc4f"
+AMI_ID="ami-0220d79f3f480ecf5"
 SG_ID="sg-0ccfe8392d60403ed"
 instances=[]
 zone_id="Z09059862X9S9AE54Z9SP"
